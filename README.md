@@ -2,6 +2,8 @@
 
 Third-party API integration, caching strategy, environment variable management.
 
+API to check the Argentine weather.
+
 [![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
@@ -13,42 +15,24 @@ Moved to [settings](http://cookiecutter-django.readthedocs.io/en/latest/settings
 
 ## Basic Commands
 
-### Setting Up Your Users
+### Setting Up Project
 
-- To create a **normal user account**, just go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page. Go to your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.
+- First step is build the docker container with this command:
 
-- To create a **superuser account**, use this command:
+      $ docker compose -f docker-compose.local.yml build
 
-      $ python manage.py createsuperuser
+- Then, do you have to run it:
 
-For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
+      $ docker compose -f docker-compose.local.yml up
 
-### Type checks
+### Trying API
 
-Running type checks with mypy:
+- For try the API, do you have to make a request to the endpoint:
 
-    $ mypy weather_api_wrapper_service
+      '[POST] http://127.0.0.1:8000/api/weather/'
 
-### Test coverage
+- With a JSON like:
 
-To run the tests, check your test coverage, and generate an HTML coverage report:
+      '{"postal_code": "5900"}'
 
-    $ coverage run -m pytest
-    $ coverage html
-    $ open htmlcov/index.html
 
-#### Running tests with pytest
-
-    $ pytest
-
-### Live reloading and Sass CSS compilation
-
-Moved to [Live reloading and SASS compilation](https://cookiecutter-django.readthedocs.io/en/latest/developing-locally.html#sass-compilation-live-reloading).
-
-## Deployment
-
-The following details how to deploy this application.
-
-### Docker
-
-See detailed [cookiecutter-django Docker documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html).
